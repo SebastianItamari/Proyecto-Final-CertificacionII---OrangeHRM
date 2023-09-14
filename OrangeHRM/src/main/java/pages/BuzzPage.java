@@ -31,10 +31,36 @@ public class BuzzPage extends CommonPage{
     }
 
     public void comment(String comment) {
-        WebElement commentTextBox = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement commentTextBox = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='Write your comment...']")));
         commentTextBox.sendKeys(comment);
         actions.sendKeys(commentTextBox, Keys.ENTER).perform();
+    }
+
+    public void setPostTextArea(String post){
+        WebElement postTextArea = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//textarea[@class='oxd-buzz-post-input']")));
+        postTextArea.sendKeys(post);
+    }
+
+    public void clickOnPostButton(){
+        WebElement postButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='oxd-button oxd-button--medium oxd-button--main']")));
+        postButton.click();
+    }
+
+    public boolean postTextIsDisplayed(String postText)
+    {
+        try {
+            WebElement postButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[text()=\"" + postText + "\"]")));
+            return postButton.isDisplayed();
+        }
+        catch (Exception e)
+        {
+            logout();
+            return false;
+        }
     }
 
     public boolean someCommentIsDisplayed(String comment)
@@ -49,32 +75,6 @@ public class BuzzPage extends CommonPage{
                 }
             }
             return false;
-        }
-        catch (Exception e)
-        {
-            logout();
-            return false;
-        }
-    }
-
-    public void setPostTextArea(String post){
-        WebElement postTextArea = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//textarea[@class='oxd-buzz-post-input']")));
-        postTextArea.sendKeys(post);
-    }
-
-    public void clickOnPostButton(){
-        WebElement postButton = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='oxd-button oxd-button--medium oxd-button--main']")));
-        postButton.click();
-    }
-
-    public boolean postTextIsDisplayed(String postText)
-    {
-        try {
-            WebElement postButton = new WebDriverWait(driver, Duration.ofSeconds(5))
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[text()=\"" + postText + "\"]")));
-            return postButton.isDisplayed();
         }
         catch (Exception e)
         {

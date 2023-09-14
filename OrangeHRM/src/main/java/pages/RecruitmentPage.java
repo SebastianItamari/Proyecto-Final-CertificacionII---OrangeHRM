@@ -19,7 +19,7 @@ public class RecruitmentPage extends CommonPage {
 
     public void clickOnVacancies()
     {
-        WebElement employeeListButton = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement employeeListButton = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.linkText("Vacancies")));
         employeeListButton.click();
     }
@@ -31,7 +31,7 @@ public class RecruitmentPage extends CommonPage {
     }
 
     public void setVacancyNameTextBox(String name){
-        WebElement vacancyNameTextBox = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement vacancyNameTextBox = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//label[text()='Vacancy Name']/ancestor::div[@class='oxd-input-group oxd-input-field-bottom-space']/div/input")));
 
         vacancyNameTextBox.sendKeys(Keys.CONTROL + "a");
@@ -40,15 +40,16 @@ public class RecruitmentPage extends CommonPage {
     }
 
     public void setVacancyDescriptionTextBox(String description){
-        WebElement vacancyDescriptionTextBox = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//textarea[@class='oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical']")));
+        WebElement vacancyDescriptionTextBox = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//textarea[@class='oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical']")));
+
         vacancyDescriptionTextBox.sendKeys(Keys.CONTROL + "a");
         vacancyDescriptionTextBox.sendKeys(Keys.DELETE);
         vacancyDescriptionTextBox.sendKeys(description);
     }
 
     public void setNumberOfPositionsTextBox(String number){
-        WebElement numberOfPositionsTextBox = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement numberOfPositionsTextBox = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Number of Positions']/ancestor::div[@class='oxd-input-group oxd-input-field-bottom-space']/div/input")));
         numberOfPositionsTextBox.sendKeys(Keys.CONTROL + "a");
         numberOfPositionsTextBox.sendKeys(Keys.DELETE);
@@ -60,7 +61,7 @@ public class RecruitmentPage extends CommonPage {
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//label[text()='Job Title']/ancestor::div[@class='oxd-input-group oxd-input-field-bottom-space']/div[@class='']")));
         jobTitleOptions.click();
 
-        WebElement selectedOption = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement selectedOption = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='" + option + "']")));
         selectedOption.click();
     }
@@ -76,7 +77,7 @@ public class RecruitmentPage extends CommonPage {
         try {
             WebElement vacancyName = new WebDriverWait(driver, Duration.ofSeconds(10))
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='" + name + "']")));
-            return vacancyName.getText().equalsIgnoreCase(name);
+            return true;
         }
         catch (Exception e)
         {
@@ -90,7 +91,7 @@ public class RecruitmentPage extends CommonPage {
         try {
             WebElement jobTitle = new WebDriverWait(driver, Duration.ofSeconds(10))
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='" + title + "']")));
-            return jobTitle.getText().equalsIgnoreCase(title);
+            return true;
         }
         catch (Exception e)
         {

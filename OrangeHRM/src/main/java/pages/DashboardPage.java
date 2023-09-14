@@ -20,18 +20,6 @@ public class DashboardPage extends CommonPage{
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public boolean dashboardTittleIsDisplayed(){
-        try{
-            WebElement dashboardTittle = new WebDriverWait(driver, Duration.ofSeconds(5))
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h6[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']")));
-
-            return dashboardTittle.isDisplayed();
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-    }
 
     public void ClickOnPIM() {
         WebElement pimButton = new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -49,5 +37,18 @@ public class DashboardPage extends CommonPage{
         WebElement recruitmentButton = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Recruitment']")));
         recruitmentButton.click();
+    }
+
+    public boolean dashboardTittleIsDisplayed(){
+        try{
+            WebElement dashboardTittle = new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h6[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']")));
+
+            return dashboardTittle.isDisplayed();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

@@ -29,8 +29,8 @@ public class RecruitmentSteps {
     public void updateVacancyInformation(DataTable vacancyInformation) {
         List<String> data = vacancyInformation.transpose().asList(String.class);
 
-        recruitmentPage.setVacancyDescriptionTextBox(data.get(2));
         recruitmentPage.setNumberOfPositionsTextBox(data.get(3));
+        recruitmentPage.setVacancyDescriptionTextBox(data.get(2));
         recruitmentPage.setVacancyNameTextBox(data.get(0));
         recruitmentPage.setJobTitleOption(data.get(1));
     }
@@ -44,8 +44,6 @@ public class RecruitmentSteps {
     public void vacancyIsDisplayed(DataTable vacancyInformation) {
         List<String> data = vacancyInformation.transpose().asList(String.class);
         Assertions.assertTrue(recruitmentPage.firstVacancyNameIsDisplayed(data.get(0)));
-        //recruitmentPage.firstVacancyNameIsDisplayed(data.get(0));
-        //recruitmentPage.firstJobTitleIsDisplayed(data.get(1));
         Assertions.assertTrue(recruitmentPage.firstJobTitleIsDisplayed(data.get(1)));
     }
 }
